@@ -1,20 +1,13 @@
 <?php
 
 require_once 'actions/db_connect.php';
+require_once 'navbar.php';
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Delete Table</title>
-</head>
-
-<body>
-
-<div class="container-fluid">
-<div class="manageUser">
-    <table border="1" cellspacing="0" cellpadding="0">
+<div class="container">
+<div class="row">
+    <table border="1" cellspacing="0" cellpadding="0" class="table1">
         <thead>
             <tr>
                 <th>Reserved</th>
@@ -36,7 +29,7 @@ require_once 'actions/db_connect.php';
                         <td>".$row['table_name']." </td>
                         <td>".$row['table_capacity']."</td>
                         <td>
-                            <a href='actions/a_delete.php?id=".$row['table_id']."'><button type='button'>Delete</button></a>
+                            <a href='actions/a_delete.php?id=".$row['table_id']."'><button type='button'  class='btn btn-danger'>Delete</button></a>
                         </td>
                     </tr>
                     ";
@@ -48,12 +41,11 @@ require_once 'actions/db_connect.php';
             ?>
        
         </tbody>
-    </table>
-    <a href='home.php'><button type='button'>Back</button></a>
-</div> <!-- manage-user-->
-</div> <!-- container-fluid-->
+    </table> 
+</div> <!-- row-->
+<div class="row">
+    <a href='home.php'><button type='button' class="btn btn-secondary">Back</button></a>
+</div>
+</div> <!-- container-->
 
-
-</body>
-</html>
-
+<?php require_once 'footer.php'; ?>

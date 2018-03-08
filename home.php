@@ -28,133 +28,88 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error() . "\n");
 }
+
+require_once 'navbar.php';
 ?>
 
-<html lang="en">
-<head>
-    <title>Welcome to the Source Code Café</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="icon" type="image/png" href="img/cup.png">
-    <style> 
-    .bg-1 { 
-       background-color: #006;
-        color: #ffffff;
-    }
-    body {
-      background-color: #006;}
-    .manageUser {
-        color: white;
-    }
-    table {
-        color: white;
-    }
-
-    </style>
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">
-            <img src="img/cup.png" alt="logo" style="width:40px;">
-        </a>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="logout.php?logout">Log Out</a>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">WHERE</a>
-        </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">WHAT</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">CONTACT</a>
-            </li>
-        </ul>
-        
-    </nav>
-
 <div class="container-fluid">
-<div class="manageUser">
-    <a href="create.php"><button type="button">Add Table</button></a>
-    <a href='delete.php'><button type='button'>Delete Table</button></a>
-    <br><br>
-    <table border="1" cellspacing="0" cellpadding="0">
-        <thead>
-            <tr>
-                <th>Reserved</th>
-                <th>Table</th>
-                <th>Seats</th>
-                <th>Option</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="row justify-content-around ">
+        <a href="create.php"><button type="button" class="ed-buttons btn btn-primary">Add Table</button></a>
+        <a href='delete.php'><button type='button' class="ed-buttons btn btn-success">Delete Table</button></a>
+        <a href="logout.php?logout"><button type="button" class="ed-buttons btn btn-danger">Logout</button></a> 
+    </div>
+<div class="row justify-content-center ">
+    <div class="col-4">
+            <p class="table-title">List of available tables</p>
+            <table border="1" cellspacing="0" cellpadding="0" class="table1">
+                <thead>
+                    <tr>
+                        <th>Table</th>
+                        <th>Seats</th>
+                        <th>Option</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            <?php
-            $sql = "SELECT * FROM tables WHERE table_reserved = 0";
-            $result = $conn->query($sql);
+                    <?php
+                    $sql = "SELECT * FROM tables WHERE table_reserved = 0";
+                    $result = $conn->query($sql);
 
-            if($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                        <td>".$row['table_reserved']."</td>
-                        <td>".$row['table_name']." </td>
-                        <td>".$row['table_capacity']."</td>
-                        <td>
-                            <a href='update.php?id=".$row['table_id']."'><button type='button'>Edit</button></a>
-                        </td>
-                    </tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'><center>No Data Avaliable</center></td></tr>";
-            }
+                    if($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>
+                                <td>".$row['table_name']." </td>
+                                <td>".$row['table_capacity']."</td>
+                                <td>
+                                    <a href='update.php?id=".$row['table_id']."'><button type='button' class='btn btn-info'>Edit</button></a>
 
-            ?>
-       
-        </tbody>
-    </table>
-<br><br>
-    <table border="1" cellspacing="0" cellpadding="0">
-        <thead>
-            <tr>
-                <th>Reserved</th>
-                <th>Table</th>
-                <th>Seats</th>
-                <th>Option</th>
-            </tr>
-        </thead>
-        <tbody>
 
-            <?php
-            $sql = "SELECT * FROM tables WHERE table_reserved = 1";
-            $result = $conn->query($sql);
+                                    <!-- UPDATE tables SET table_reserved = 1 WHERE table_id = 5
+                                         UPDATE tables SET table_reserved = 0 WHERE table_id = 5 -->
+                                </td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'><center>No Data Avaliable</center></td></tr>";
+                    }
+                    ?>            
+                </tbody>
+            </table>
+    </div>
+    <div class="col-4">
+            <p class="table-title">List of reserved tables</p>
+                <table border="1" cellspacing="0" cellpadding="0"  class="table1">
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>Seats</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = "SELECT * FROM tables WHERE table_reserved = 1";
+                        $result = $conn->query($sql);
 
-            if($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr>
-                        <td>".$row['table_reserved']."</td>
-                        <td>".$row['table_name']." </td>
-                        <td>".$row['table_capacity']."</td>
-                        <td>
-                            <a href='update.php?id=".$row['table_id']."'><button type='button'>Edit</button></a>
-                        </td>
-                    </tr>";
-                }
-            } else {
-                echo "<tr><td colspan='5'><center>No Data Avaliable</center></td></tr>";
-            }
-
-            ?>
-       
-        </tbody>
-    </table>
-
-</div> <!-- manage-user-->
+                        if($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>
+                                    <td>".$row['table_name']." </td>
+                                    <td>".$row['table_capacity']."</td>
+                                    <td>
+                                        <a href='update.php?id=".$row['table_id']."'><button type='button' class='btn btn-info'>Edit</button></a>
+                                    </td>
+                                </tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'><center>No Data Avaliable</center></td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+    </div>
+  </div>
 </div> <!-- container-fluid-->
-</body>
-</html>
 
+<?php require_once 'footer.php'; ?>
 

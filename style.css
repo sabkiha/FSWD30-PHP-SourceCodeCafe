@@ -1,0 +1,32 @@
+.body {
+	background: url('img/system-failure.jpg');
+    color:  red;
+    font-family: monospace
+}
+
+.ed-buttons {
+	margin: 20px;
+}
+
+.table-title {
+	padding: 5px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.table1 {
+	background: rgba(255,255,255,0.5);
+	color: darkred;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.row1 {
+	padding-top: 20px;
+}
+.tagline {
+	font-size: 25px;
+}
+.main-title {
+	font-size: 60px;
+}

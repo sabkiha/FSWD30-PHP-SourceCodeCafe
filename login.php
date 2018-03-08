@@ -65,87 +65,34 @@ $email = "";
   }
  }
 
+require_once 'navbar.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Source Code Café Employee Login</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
-  <link rel="icon" type="image/png" href="img/cup.png">
-     <style> 
-    body {
-      background-color: #006;
-    }
-    .bg-1 { 
-       background-color: #006;
-        color: #ffffff;
-      }
-    .uw {
-      color:  white;
-      font-size: 20px;
-      padding: 10px 0 0 0;
-    }
-    .cover {
-      height: 200px;
-    }
-    </style>
-</head>
-<body>
-     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand"href="logout.php?logout">Logout</a>&nbsp
-      <img src="img/cup.png" alt="logo" style="width:40px;">&nbsp
-    </a>
-    <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">WHERE</a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">WHAT</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">CONTACT</a>
-      </li>
-    </ul>
-   
-  </nav>
-
-  <div class="container-fluid bg-1 text-center"> 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
- 
-
-             <h2>Please log into your Source Code Café Employee Account:</h2>
-             <hr />
-           
-
-            <?php
-
-   if ( isset($errMSG) ) {
-
-echo $errMSG; ?>
+  <div class="container-fluid bg-1 text-center">
+    <br>
+    <div class="row justify-content-md-center">
+      <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+                <h2>Please log into your Source Code Café Employee Account:</h2>
+               <hr />
+              <?php
+               if ( isset($errMSG) ) {
+                echo $errMSG; ?>
                 <?php
-   }
-   ?>
-
-             <input type="email" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
-             <span class="text-danger"><?php echo $emailError; ?></span>
-             <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
-            <span class="text-danger"><?php echo $passError; ?></span>
-             <hr />
-             <button type="submit" name="btn-login">Log In</button>
-             <hr />
-             <a href="register.php">Employee Registration...</a>
-    </form>
+               }?>
+               <input type="email" name="email" class="form-control" placeholder="Your Email" value="<?php echo $email; ?>" maxlength="40" />
+               <span class="text-danger"><?php echo $emailError; ?></span>
+               <input type="password" name="pass" class="form-control" placeholder="Your Password" maxlength="15" />
+              <span class="text-danger"><?php echo $passError; ?></span>
+               <hr />
+               <button type="submit" name="btn-login" class="btn btn-block btn-primary">Log In</button>
+               <hr />
+               <h3><a href="register.php">Employee Registration...</a></h3>
+      </form>      
     </div>
+  </div>
 
 </body>
 </html>
 
-<?php ob_end_flush(); ?>
+
 

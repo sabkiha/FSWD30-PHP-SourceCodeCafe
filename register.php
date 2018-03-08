@@ -112,96 +112,37 @@
   }
  }
 
+require_once 'navbar.php';
+
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Souce Code Café Account Registration</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
-  <link rel="icon" type="image/png" href="img/cup.png">
-     <style> 
-    body {
-      background-color: #006;
-    }
-    .bg-1 { 
-       background-color: #006;
-        color: #ffffff;
-      }
-    .uw {
-      color:  white;
-      font-size: 20px;
-      padding: 10px 0 0 0;
-    }
-    .cover {
-      height: 200px;
-    }
-    </style>
-</head>
-<body>
-   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-      <a class="navbar-brand"href="logout.php?logout">Logout</a>&nbsp
-      <img src="img/cup.png" alt="logo" style="width:40px;">&nbsp
-    </a>
-    <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">WHERE</a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">WHAT</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">CONTACT</a>
-      </li>
-    </ul>
-   
-  </nav>
-
   <div class="container-fluid bg-1 text-center"> 
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
-
-             <h2>New Employee Registration</h2>
-             <hr />
-         
-
+    <br>
+    <div class="row justify-content-md-center">
+      <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+        <h2>New Employee Registration</h2>
+          <hr />
             <?php
               if ( isset($errMSG) ) { 
             ?>
-             <div class="alert">
-
+            <div class="alert">
              <?php echo $errMSG; ?>
               </div>
-             <?php
-           }
-              ?>
-    
-<input type="text" name="name" class="form-control" placeholder="Enter Name" maxlength="50" value="" />
-    <span class="text-danger"><?php echo $nameError; ?></span>
+             <?php } ?>
+            <input type="text" name="name" class="form-control" placeholder="Enter Name" maxlength="50" value="" />
+                <span class="text-danger"><?php echo $nameError; ?></span>
+            <input type="text" name="surname" class="form-control" placeholder="Enter Surname" maxlength="100" value="" />
+                <span class="text-danger"><?php echo $surnameError; ?></span>
+            <input type="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="" />
+                    <span class="text-danger"><?php echo $emailError; ?></span>
+            <input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlength="15" />
+            <span class="text-danger"></span>
+            <hr />
+            <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Register your account</button>
+            <hr />
+            <h3><a href="login.php">Got to Login...</a></h3>
+      </form>
 
-<input type="text" name="surname" class="form-control" placeholder="Enter Surname" maxlength="100" value="" />
-    <span class="text-danger"><?php echo $surnameError; ?></span>
-
-<input type="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="" />
-        <span class="text-danger"><?php echo $emailError; ?></span>
-
-<input type="password" name="pass" class="form-control" placeholder="Enter Password" maxlength="15" />
-        <span class="text-danger"></span>
-
-        <hr />
-
-        <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Register your account</button>
-        <hr />
-
-        <a href="login.php">Got to Login...</a>
-    </form>
 </div>
-
 </body>
 </html>
-<?php ob_end_flush(); ?>
