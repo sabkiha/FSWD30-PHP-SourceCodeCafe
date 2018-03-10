@@ -42,7 +42,7 @@ require_once 'navbar.php';
         </div><!-- col-& -->
       <div class="col-3 text-center">
             <h3>We have <?php echo $data["aantal"]; ?> free Tables at the moment.</h3>
-            <table border="1" cellspacing="0" cellpadding="0" class="table1">
+            <table border="1" cellspacing="0" cellpadding="0" class="table1" id="index-table">
                 <thead>
                       <tr>
                         <th>Available tables&nbsp&nbsp</th>
